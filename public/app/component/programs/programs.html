@@ -1,0 +1,9 @@
+<side-dir></side-dir>
+<section class="programs-section">
+    <div class="program-container" ng-repeat="program in programs">
+        <h1>{{ program.name }}</h1>
+        <img ng-src="{{ program.image }}" alt="img" />
+        <p>{{ program.city }}</p>
+        <p>{{ program.description }}</p>
+    </div>
+</section>

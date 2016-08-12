@@ -1,1 +1,1 @@
-angular.module('streamalong', ['ui-router']);
+angular.module('streamalong', ['ui.router']);

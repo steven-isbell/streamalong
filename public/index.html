@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html ng-app="streamalong">
-  <head>
+
+<head>
+    <!-- Metas -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StreamAlong</title>
+    <!-- Styles -->
     <link rel="stylesheet" href="./assets/styles/normalize.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/styles/reset.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/styles/main.css" media="screen" title="no title" charset="utf-8">
-  </head>
-  <body>
+
+    <base ui-sref="/"/>
+</head>
+
+<body>
+
+<!-- Routes -->
+<ui-view jq-dir></ui-view>
 
 
 
 
 
 
+</body>
 
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<!-- Angular CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+<!-- ui-router CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+<!-- App foundation -->
+<script src="./app/app.module.js"></script>
+<script src="./app/app.routes.js"></script>
+<!-- Controllers -->
+<script src="./app/component/home/homeCtrl.js"></script>
+<script src="./app/component/client_view/clientCtrl.js"></script>
+<script src="./app/component/programs/programCtrl.js"></script>
+<!-- Services -->
+<script src="./app/component/home/homeSrvc.js"></script>
+<script src="./app/component/client_view/clientSrvc.js"></script>
+<script src="./app/component/programs/programSrvc.js"></script>
+<!-- Directives -->
+<script src="./app/directives/animateDir.js"></script>
+<script src="./app/directives/sidebar/sidebar.js"></script>
+<!-- Font Awesome -->
+<script src="https://use.fontawesome.com/d69cb13af9.js"></script>
 
-  </body>
-  <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-L6ppAjL6jgtRmfiuigeEE5AwNI2pH/X9IBbPyanJeZw=" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 </html>

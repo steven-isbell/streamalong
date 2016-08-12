@@ -1,0 +1,30 @@
+<section class="sidebar">
+    <div class="user-profile" ng-repeat="item in user">
+        <img ng-src="{{item.cm_image}}" alt="" />
+        <p>{{item.name}}</p>
+    </div>
+
+    <div class="tabs">
+        <div class="dash" ui-sref='home'>
+        <div class="">
+            <p><i class="fa fa-tachometer fa-2x fa-fw" aria-hidden="true"></i>DASHBOARD</p>
+        </div>
+    </div>
+    <div class="dash" ui-sref='clients'>
+        <div class="">
+            <p><i class="fa fa-users fa-2x fa-fw" aria-hidden="true"></i>CLIENTS</p>
+        </div>
+    </div>
+    <div class="dash" ui-sref='programs'>
+        <div class="">
+            <p><i class="fa fa-first-order fa-2x fa-fw" aria-hidden="true"></i>PROGRAMS</p>
+        </div>
+    </div>
+    <div class="dash" ui-sref='distraction'>
+        <div class="">
+            <p><i class="fa fa-gamepad fa-2x fa-fw" aria-hidden="true"></i>DISTRACTION</p>
+        </div>
+    </div>
+
+    </div>
+</section>

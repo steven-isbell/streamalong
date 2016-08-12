@@ -1,0 +1,26 @@
+<side-dir></side-dir>
+<main>
+    <section class="admin-dash">
+        <div class="greeting">
+        </div>
+        <div class="calendar"></div>
+        <div class="to-do">
+            <div class="to-do-container">
+                <input type="text" ng-model="note.title" placeholder="Title" class="to-do-input left">
+                <input type="text" ng-model="note.content" placeholder="Add Content" class="to-do-input">
+                <button ng-click="saveNote(note)">Add Note</button>
+            </div>
+            <div class="note-container">
+                <ul>
+                    <li ng-repeat="note in notes">
+                        <a href="">
+                            <i class="fa fa-trash" aria-hidden="true" id="trash" ng-click="deleteNote(item)"></i>
+                            <h2>{{ note.title }}</h2>
+                            <p>{{ note.content }}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
