@@ -1,16 +1,91 @@
 <section class="landing-page">
-  <header class="landing-head">
-    <ul class="item-list">
-      <li class="list-item"><img src="../../../assets/img/large_streamalong.png" alt="logo" /></li>
-      <div class="right-float">
-      <li class="list-item"><button class="log-in">Log In</button></li>
-      <li class="list-item"><button class="sign-up">Sign Up</button></li>
+    <header class="landing-head">
+        <ul class="item-list">
+            <li class="list-item"><img src="../../../assets/img/the-journey-logo.png" alt="logo" /></li>
+            <div class="right-float">
+                <li class="list-item">
+                    <button class="log-in">Login</button>
+                </li>
+                <li class="list-item">
+                    <button class="sign-up">Sign Up</button>
+                </li>
+            </div>
+        </ul>
+    </header>
+    <section class="body-LP">
+        <h1 class="title-LP">Connecting Those That Serve Our<br><a class="work"></a></h1>
+        <img class="filter" src="../../../assets/img/down-arrow.png" alt="arrow" />
+    </section>
+
+    <div class="login-modal">
+        <form class="login-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-img">
+                <img src="../../assets/img/avatar-generic_1_.jpg" alt="" />
+            </div>
+            <div class=login-modal-block>
+                <label>Username</label>
+                <input class="login-input" type="text" placeholder="Enter Username" ng-model="username" required>
+
+                <label>Password</label>
+                <input class="login-input" type="password" placeholder="Enter Password" ng-model="password" required>
+
+                <button class="log-in" type="submit" ng-click="login(username, password)">Login</button>
+                <a href="/auth/google">
+                    <button class="google" type="button" name="button"></button>
+                </a>
+            </div>
+        </form>
     </div>
-    </ul>
-  </header>
-  <section class="body-LP">
-  <div class="title-LP">
-    <h1>Connecting Those That Serve Our Youth</h1>
-  </div>
+
+    <div class="signup-modal">
+        <form class="modal-content">
+            <div class="signup-modal-content">
+                <span class="close-modal">&times;</span>
+                <h1>Enter Information Here</h1>
+                <label>Name</label>
+                <input class="signup-input" type="text" name="name" placeholder="Ex. John Smith" ng-model="user.name" required>
+                <label>Department</label>
+                <input class="signup-input" type="text" name="department" placeholder="JJS or DCFS" ng-model="user.department" required>
+                <label>Phone Number</label>
+                <input class="signup-input" type="tel" name="pnhone_number" placeholder="Ex. (555)-555-5555" ng-model="user.contact_number" required>
+                <label>Email</label>
+                <input class="signup-input" type="email" name="email" placeholder="Ex. john@domain.com" ng-model="user.email" required>
+                <label>Username</label>
+                <input class="signup-input" type="text" name="username" placeholder="Ex. john.deere" ng-model="user.username" required>
+                <label>Password</label>
+                <input class="signup-input" type="password" name="password" placeholder="Enter Password" ng-model="user.password" required>
+                <label>Profile Image Link</label>
+                <input class="signup-input" type="text" name="image" placeholder="Image URL" ng-model="user.cm_image" required>
+                <button class="sign-up" type="button" name="button" ng-click="addManager(user)">Sign Up</button>
+            </div>
+        </form>
+    </div>
 </section>
+<section class="lp-about">
+    <div class="top-container">
+        <div class="img-container-left">
+
+        </div>
+        <div class="text-container-right">
+
+        </div>
+
+    </div>
+    <div class="middle-container">
+        <div class="img-container-right">
+
+        </div>
+        <div class="text-container-left">
+
+        </div>
+    </div>
+    <div class="tertiary-container">
+        <div class="img-container-left2">
+
+        </div>
+        <div class="text-container-right2">
+
+        </div>
+    </div>
 </section>

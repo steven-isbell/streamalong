@@ -1,26 +1,26 @@
 <side-dir></side-dir>
+<info-modal></info-modal>
 <main>
+    <button type="button" class="sidebar-show">Menu</button>
     <section class="admin-dash">
-        <div class="greeting">
+        <div class="weather">
+            <div class="icon-container">
+                <i class="wi wi-owm-{{ now.weather[0].id }} wi-2x"></i>
+            </div>
+            <div class="weather-info">
+                <h1>{{ now.main.temp | number: 0 }}°</h1>
+                <p>{{ now.name }}</p>
+            </div>
         </div>
-        <div class="calendar"></div>
-        <div class="to-do">
-            <div class="to-do-container">
-                <input type="text" ng-model="note.title" placeholder="Title" class="to-do-input left">
-                <input type="text" ng-model="note.content" placeholder="Add Content" class="to-do-input">
-                <button ng-click="saveNote(note)">Add Note</button>
-            </div>
-            <div class="note-container">
-                <ul>
-                    <li ng-repeat="note in notes">
-                        <a href="">
-                            <i class="fa fa-trash" aria-hidden="true" id="trash" ng-click="deleteNote(item)"></i>
-                            <h2>{{ note.title }}</h2>
-                            <p>{{ note.content }}</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <div class="time">
+            {{ clock }}
+        </div>
+        <div class="userGreeting">
+            <h1>Hello, {{ user.name }}.</h1>
+        </div>
+        <div class="quotes">
+            <h1>"{{ quote.quoteText }}"</h1>
+            <p class="author">-- &nbsp; {{ quote.quoteAuthor }}</p>
         </div>
     </section>
 </main>

@@ -1,30 +1,78 @@
 <section class="sidebar">
-    <div class="user-profile" ng-repeat="item in user">
-        <img ng-src="{{item.cm_image}}" alt="" />
-        <p>{{item.name}}</p>
+    <div class="user-profile">
+        <img class="user-image" ng-src="{{user.cm_image}}" alt="logo" />
+        <p>
+            {{user.name}}
+        </p>
     </div>
-
+    <hr>
     <div class="tabs">
+
         <div class="dash" ui-sref='home'>
-        <div class="">
-            <p><i class="fa fa-tachometer fa-2x fa-fw" aria-hidden="true"></i>DASHBOARD</p>
+            <div class="">
+                <p><i class="fa fa-home fa-lg fa-fw" aria-hidden="true"></i>HOME</p>
+            </div>
         </div>
-    </div>
-    <div class="dash" ui-sref='clients'>
-        <div class="">
-            <p><i class="fa fa-users fa-2x fa-fw" aria-hidden="true"></i>CLIENTS</p>
+
+        <div class="dash" id="client-toggle" ui-sref='clients'>
+            <div class="">
+                <p><i class="fa fa-users fa-lg fa-fw" aria-hidden="true"></i>CLIENTS</p>
+            </div>
         </div>
-    </div>
-    <div class="dash" ui-sref='programs'>
-        <div class="">
-            <p><i class="fa fa-first-order fa-2x fa-fw" aria-hidden="true"></i>PROGRAMS</p>
+
+        <div class="dash-dropmenu" id="client-drop">
+            <div class="dash" id="add-client">
+                <p><i class="fa fa-plus-square-o fa-lg fa-fw" aria-hidden="true"></i>ADD CLIENT</p>
+            </div>
+            <div class="dash" id="update-client">
+                <p><i class="fa fa-pencil-square-o fa-lg fa-fw" aria-hidden="true"></i>UPDATE CLIENT</p>
+            </div>
+            <div class="dash" id="remove-client">
+                <p><i class="fa fa-trash fa-lg fa-fw" aria-hidden="true"></i>REMOVE CLIENT</p>
+            </div>
         </div>
-    </div>
-    <div class="dash" ui-sref='distraction'>
-        <div class="">
-            <p><i class="fa fa-gamepad fa-2x fa-fw" aria-hidden="true"></i>DISTRACTION</p>
+
+        <div class="dash" id="programs-toggle" ui-sref='programs'>
+            <div class="">
+                <p><i class="fa fa-first-order fa-lg fa-fw" aria-hidden="true"></i>PROGRAMS</p>
+            </div>
         </div>
-    </div>
+
+        <div class="dash-dropmenu" id="programs-drop">
+            <div class="dash" id="add-program">
+                <p><i class="fa fa-plus-square-o fa-lg fa-fw" aria-hidden="true"></i>ADD PROGRAM</p>
+            </div>
+            <div class="dash" id="delete-program">
+                <p><i class="fa fa-trash fa-lg fa-fw" aria-hidden="true"></i>REMOVE PROGRAM</p>
+            </div>
+        </div>
+
+        <div class="dash" ui-sref='distraction'>
+            <div class="">
+                <p><i class="fa fa-picture-o fa-lg fa-fw" aria-hidden="true"></i>DISTRACTION</p>
+            </div>
+        </div>
+        <div class="dash" id="info-display">
+            <div class="">
+                <p><i class="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></i>MY INFO</p>
+            </div>
+        </div>
+
+
+        <section class="tabs-bottom">
+            <hr>
+            <div class="dash">
+                <div class="">
+                    <p><i class="fa fa-pencil-square-o fa-lg fa-fw" aria-hidden="true"></i>UPDATE PROFILE</p>
+                </div>
+            </div>
+            <div class="dash one-click" ng-click="logout()">
+                <div class="">
+                    <p><i class="fa fa-sign-out fa-lg fa-fw" aria-hidden="true"></i>LOGOUT</p>
+                </div>
+            </div>
+        </section>
 
     </div>
+
 </section>

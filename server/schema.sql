@@ -4,10 +4,10 @@ CREATE TABLE case_managers (
   department varchar(255),
   contact_number varchar(15),
   email varchar(100),
-  user_role varchar(20),
   username varchar(20),
   password varchar(20),
-  cm_image text
+  cm_image text,
+  google_id varchar(40)
 );
 
 CREATE TABLE clients (
@@ -15,9 +15,8 @@ CREATE TABLE clients (
   name varchar(50),
   age INTEGER,
   date_of_birth varchar(20),
-  department varchar(255),
   case_manager varchar(50),
-  case_manager_id INTEGER,
+  case_manager_id INTEGER REFERENCES case_managers(id),
   client_image text
 );
 

@@ -1,21 +1,38 @@
 angular.module('streamalong')
-    .controller('homeCtrl', function($scope, homeSrvc) {
-            $scope.saveNote = function(newNote) {
-                $scope.note = {};
-                homeSrvc.addNote(newNote);
-                fetchNotes();
-            };
+    .controller('homeCtrl', function($scope, homeSrvc, user) {
 
-            function fetchNotes() {
-                homeSrvc.fetchNotes().then(function(response) {
-                    $scope.notes = response;
-                });
-            }
+        $scope.user = user.data;
 
-            fetchNotes();
+        function update() {
+            $('.time').html(moment().format('h:mm'));
+        }
 
-            $scope.deleteNote = function() {
+        let clock = setInterval(update, 1000);
 
-            };
+        $scope.clock = clock;
+
+        $scope.getQuote = function() {
+            homeSrvc.getQuote().then(function(results) {
+                $scope.quote = results;
+            });
+        };
+        $scope.getQuote();
+
+        if ("geolocation" in navigator) {
+            /* geolocation is available */
+        } else {
+            alert('Unable to access location');
+        }
+
+
+        $scope.currWeather = function() {
+            homeSrvc.getLocation().then(function (response) {
+              homeSrvc.getAPIWeather(response).then(function (response) {
+                  $('.weather').css("visibility", "visible");
+                $scope.now = response.data;
+              });
+            });
+        };
+        $scope.currWeather();
 
     });
