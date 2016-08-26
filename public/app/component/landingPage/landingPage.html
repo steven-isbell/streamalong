@@ -1,3 +1,4 @@
+<win-scroll></win-scroll>
 <section class="landing-page">
     <header class="landing-head">
         <ul class="item-list">
@@ -14,7 +15,7 @@
     </header>
     <section class="body-LP">
         <h1 class="title-LP">Connecting Those That Serve Our<br><a class="work"></a></h1>
-        <img class="filter" src="../../../assets/img/down-arrow.png" alt="arrow" />
+        <img id="raptor" class="filter" src="../../../assets/img/down-arrow.png" alt="arrow" />
     </section>
 
     <div class="login-modal">
@@ -43,49 +44,73 @@
             <div class="signup-modal-content">
                 <span class="close-modal">&times;</span>
                 <h1>Enter Information Here</h1>
+                <br>
                 <label>Name</label>
-                <input class="signup-input" type="text" name="name" placeholder="Ex. John Smith" ng-model="user.name" required>
+                <input class="signup-input" type="text" name="name" placeholder="Ex. John Smith" ng-model="user.name" required />
                 <label>Department</label>
-                <input class="signup-input" type="text" name="department" placeholder="JJS or DCFS" ng-model="user.department" required>
+                <div class="radio-container">
+                    <div class="radio">JJS &nbsp;
+                        <input type="radio" checked name="department" ng-model="user.department" value="JJS" required>
+                    </div>
+                    <div class="radio">DCFS &nbsp;
+                        <input type="radio" name="department" ng-model="user.department" value="DCFS" required>
+                    </div>
+                </div>
                 <label>Phone Number</label>
-                <input class="signup-input" type="tel" name="pnhone_number" placeholder="Ex. (555)-555-5555" ng-model="user.contact_number" required>
+                <input class="signup-input" type="tel" name="pnhone_number" placeholder="Ex. (555)-555-5555" ng-model="user.contact_number" required />
                 <label>Email</label>
-                <input class="signup-input" type="email" name="email" placeholder="Ex. john@domain.com" ng-model="user.email" required>
+                <input class="signup-input" type="email" name="email" placeholder="Ex. john@domain.com" ng-model="user.email" required />
                 <label>Username</label>
-                <input class="signup-input" type="text" name="username" placeholder="Ex. john.deere" ng-model="user.username" required>
+                <input class="signup-input" type="text" name="username" placeholder="Ex. john.deere" ng-model="user.username" required />
                 <label>Password</label>
-                <input class="signup-input" type="password" name="password" placeholder="Enter Password" ng-model="user.password" required>
+                <input class="signup-input" type="password" name="password" placeholder="Enter Password" ng-model="user.password" required />
                 <label>Profile Image Link</label>
-                <input class="signup-input" type="text" name="image" placeholder="Image URL" ng-model="user.cm_image" required>
+                <input class="signup-input" type="text" name="image" placeholder="Image URL" ng-model="user.cm_image" required />
                 <button class="sign-up" type="button" name="button" ng-click="addManager(user)">Sign Up</button>
             </div>
         </form>
     </div>
 </section>
-<section class="lp-about">
-    <div class="top-container">
-        <div class="img-container-left">
-
-        </div>
+<section class="lp-about" id="raptor-receiver">
+    <div class="inverse-container" id="inverse-top">
+        <div class="img-container-left"></div>
         <div class="text-container-right">
-
+            <h1 class="headline">Our Goal</h1>
+            <hr class="lp-breaker">
+            <p>
+                Our goal is to bring together a client's entire treatment team. Here you can access daily notes on the clients progress, track their overall progress, and seamlessly share as needed data with any member of the client's team.
+            </p>
         </div>
 
     </div>
     <div class="middle-container">
-        <div class="img-container-right">
-
-        </div>
+        <div class="img-container-right"></div>
         <div class="text-container-left">
-
+            <h1 class="headline">The Family</h1>
+            <hr class="lp-breaker">
+            <p>
+                We're here to make the Journey towards familial reconciliation as smooth as possible. By closely tracking and sharing your clients data with those that need it, you can be sure that nothing will slip through the cracks.
+            </p>
         </div>
     </div>
-    <div class="tertiary-container">
-        <div class="img-container-left2">
-
-        </div>
-        <div class="text-container-right2">
-
+    <div class="inverse-container" id="inverse-bottom">
+        <div class="img-container-left2"></div>
+        <div class="text-container-right">
+            <h1 class="headline">The Team</h1>
+            <hr class="lp-breaker">
+            <p>
+                The success of your clients relies on you as a member of their treatment team. Whether you work on their physical, mental, or spiritual well-being, you are an integral part in their journey towards rehabilitation. We're glad to be a part of that team.
+            </p>
         </div>
     </div>
 </section>
+<footer class="lp-footer">
+    <div class="copyright">
+        Copyright (c) 2016 Journey, LLC. All Rights Reserved.
+    </div>
+    <div class="lp-icon-container">
+        <a href="https://www.facebook.com/steven.isbell.9"><i class="fa fa-facebook-official fa-fw fa-2x lp-icons" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/steven-isbell-475808111"><i class="fa fa-linkedin-square fa-fw fa-2x lp-icons" aria-hidden="true"></i></a>
+        <a href="https://github.com/steven-isbell"><i class="fa fa-github fa-fw fa-2x lp-icons" aria-hidden="true"></i></a>
+    </div>
+</footer>

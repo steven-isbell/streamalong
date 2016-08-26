@@ -1,0 +1,34 @@
+<section class="info-section">
+    <div class="CM-modal">
+        <form class="modal-content">
+            <div class="CM-modal-content">
+                <span class="close-modal">&times;</span>
+                <h1>Alter The Desired Fields</h1>
+                <br>
+                <label>Name</label>
+                <input class="signup-input" type="text" name="name" placeholder="John Smith" ng-model="user.name" ng-value="user.name" required>
+                <label>Department</label>
+                <br>
+                <div class="radio-container">
+                    <div class="radio">JJS &nbsp;
+                        <input type="radio" checked name="department" ng-model="user.department" value="JJS" required>
+                    </div>
+                    <div class="radio">DCFS &nbsp;
+                        <input type="radio" name="department" ng-model="user.department" value="DCFS" required>
+                    </div>
+                </div>
+                <label>Phone Number</label>
+                <input class="signup-input" type="tel" name="phone_number" placeholder="(555)-555-5555" ng-model="user.contact_number" ng-value="user.contact_number" required>
+                <label>Email</label>
+                <input class="signup-input" type="email" name="email" placeholder="john@domain.com" ng-model="user.email" ng-value="user.email" required>
+                <label>Username</label>
+                <input class="signup-input" type="text" name="username" placeholder="john.deere" ng-model="user.username" ng-value="user.username" required>
+                <label>Password</label>
+                <input class="signup-input" type="password" name="password" placeholder="Enter Password" ng-model="user.password" required>
+                <label>Profile Image Link</label>
+                <input class="signup-input" type="text" name="image" placeholder="Image URL" ng-model="user.cm_image" ng-value="user.cm_image" required>
+                <button class="sign-up" type="button" name="button" ng-click="putManager(user, user.id)">Update</button>
+            </div>
+        </form>
+    </div>
+</section>

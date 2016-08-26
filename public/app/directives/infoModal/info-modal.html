@@ -1,17 +1,25 @@
 <section class="info-section">
     <div class="info-modal">
-        <div class="info-modal-content">
-            <div class="banner">
-                <span class="close-modal">&times;</span>
-                <img src="{{user.cm_image}}" alt="" />
-                {{user.name}}
-            </div>
-            <br>
-            <ul class="info-content">
-                <li>ID Number: {{user.id}}</li>
-                <li>Department: {{user.department}}</li>
-                <li>Phone Number: {{user.contact_number}}</li>
-                <li>Email: {{user.email}}</li>
+        <div class="info-modal-straight">
+            <div class="client-container ih-item square effect6 from_top_and_bottom">
+                <a>
+                    <div class="img"><img class="info-img" ng-src="{{ user.cm_image }}" alt="img" /></div>
+                    <div class="info">
+                        <span class="close-modal">&times;</span>
+                        <h3>{{ user.name }}</h3>
+                        <p>ID
+                            <hr class="breaker">{{ user.id }}</p>
+                        <br>
+                        <p>Department
+                            <hr class="breaker">{{ user.department }}</p>
+                        <br>
+                        <p>Phone Number
+                            <hr class="breaker">{{ user.contact_number }}</p>
+                        <br>
+                        <p>Email
+                            <hr class="breaker">{{ user.email }}</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

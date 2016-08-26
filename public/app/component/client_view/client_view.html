@@ -1,48 +1,61 @@
 <side-dir></side-dir>
 <info-modal></info-modal>
-<button type="button" class="sidebar-show">Menu</button>
+<cm-modal></cm-modal>
+<button type="button" class="sidebar-show"><i class="fa fa-bars fa-fw fa-lg" aria-hidden="true"></i>Menu</button>
 <section class="client-section">
+    <header>
+        <img class="logo-internal" src="../../../assets/img/the-journey-logo.png" alt="logo" />
+    </header>
     <div class="client-wrapper">
-        <div class="client-container" ng-repeat="client in clients track by $index">
-            <img class="client-img" ng-src="{{ client.client_image }}" alt="img" ng-click="readProgramId(client)" />
-            <br>
-            <h1>{{ client.name }}</h1>
-            <!-- <i class="fa fa-trash fa-fw" id="clientDelete" ng-click="deleteClient(client.id)"></i> -->
+        <div class="client-container ih-item square effect6 from_top_and_bottom" ng-repeat="client in clients | orderBy: 'name' track by $index">
+            <a>
+                <div class="img"><img class="client-img" ng-src="{{ client.client_image }}" alt="img" /></div>
+                <div class="info">
+                    <h3>{{ client.name }}</h3>
+                    <p>Age
+                        <hr class="breaker">{{ client.age }}</p>
+                    <br>
+                    <p>Date of Birth
+                        <hr class="breaker">{{client.date_of_birth}}</p>
+                    <br>
+                    <div class="icon-invert">
+                        <i class="fa fa-file-o fa-fw fa-lg" aria-hidden="true"></i>
+                        <i class="fa fa-user fa-fw fa-lg" aria-hidden="true"></i>
+                        <i class="fa fa-calendar fa-fw fa-lg" aria-hidden="true"></i>
+                    </div>
+                    <i class="fa fa-trash fa-fw fa-lg" id="clientDelete" ng-click="deleteClient(client.id)"></i>
+                </div>
+            </a>
         </div>
-    </div>
-    <div class="client-hover-container">
-        <div class="client-hover">
-            <h1>{{ selectedClient.name }}</h1>
-            <img ng-src="{{ selectedClient.client_image }}" />
-            <p>{{ selectedClient.city }}</p>
-            <p>{{ selectedClient.description }}</p>
-            <p>{{ selectedClient.phone_number }}</p>
-            <!-- <button type="button" name="button" class="delete-client" ng-click="deleteProgram(selectedClient.id)">REMOVE</button> -->
-        </div>
-    </div>
 
-    <div class="client-modal">
-        <form class="modal-content">
-            <div class="client-modal-content">
-                <span class="close-modal">&times;</span>
-                <h1>Enter New Client Information</h1>
-                <br>
-                <label>Name</label>
-                <input class="client-input" type="text" name="name" placeholder="Enter Client Name" ng-model="newClient.name" required>
-                <label>Age</label>
-                <input class="client-input" type="text" name="name" placeholder="Enter Client's Age" ng-model="newClient.age" required>
-                <label>Date of Birth</label>
-                <br>
-                <input class="client-input" type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" placeholder="Enter Client's Date of Birth" ng-model="newClient.date_of_birth" required>
-                <br>
-                <label>Case Manager</label>
-                <input class="client-input" type="text" name="name" placeholder="Enter Client's Case Manager Name" ng-model="newClient.case_manager" required>
-                <label>Case Manager ID</label>
-                <input class="client-input" type="text" name="name" placeholder="Enter Client's Case Manager ID" ng-model="newClient.case_manager_id" required>
-                <label>Image</label>
-                <input class="client-input" type="text" name="name" placeholder="Enter Client's Image URL" ng-model="newClient.client_image" required>
-                <button class="program-btn" type="button" name="button" ng-click="addClient(newClient)">Submit</button>
-            </div>
-        </form>
+        <div class="no-clients no-display">
+            <h1>Begin By Adding a Client From the Menu</h1>
+        </div>
+
+        <div class="client-modal">
+            <form class="modal-content">
+                <div class="client-modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h1>Enter New Client Information</h1>
+                    <br>
+                    <label>Name</label>
+                    <input class="client-input" type="text" name="name" placeholder="Enter Client Name" ng-model="newClient.name" required>
+                    <label>Age</label>
+                    <input class="client-input" type="text" name="name" placeholder="Enter Client's Age" ng-model="newClient.age" required>
+                    <label>Date of Birth</label>
+                    <br>
+                    <input class="client-input" type="text" id="date" data-format="MM-DD-YYYY" data-template="MMM D YYYY" name="date" placeholder="Enter Client's Date of Birth" ng-model="newClient.date_of_birth" required>
+                    <br>
+                    <label>Case Manager</label>
+                    <input class="client-input" type="text" name="name" placeholder="Enter Client's Case Manager Name" ng-model="newClient.case_manager" ng-value="user.name" required>
+                    <label>Case Manager ID</label>
+                    <input class="client-input" type="text" name="name" placeholder="Enter Client's Case Manager ID" ng-model="newClient.case_manager_id" ng-value="user.id" required>
+                    <label>Image</label>
+                    <input class="client-input" type="text" name="name" placeholder="Enter Client's Image URL" ng-model="newClient.client_image" required>
+                    <button class="program-btn" type="button" name="button" ng-click="addClient(newClient)">Submit</button>
+                </div>
+            </form>
+        </div>
+
     </div>
 </section>

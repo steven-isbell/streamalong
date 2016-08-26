@@ -1,8 +1,12 @@
 <side-dir></side-dir>
 <info-modal></info-modal>
-<main>
-    <button type="button" class="sidebar-show">Menu</button>
-    <section class="admin-dash">
+<cm-modal></cm-modal>
+<button type="button" class="sidebar-show"><i class="fa fa-bars fa-fw fa-lg" aria-hidden="true"></i>Menu</button>
+<section class="admin-dash">
+    <header>
+        <img class="logo-internal" src="../../../assets/img/the-journey-logo.png" alt="logo" />
+    </header>
+    <div class=home-wrap>
         <div class="weather">
             <div class="icon-container">
                 <i class="wi wi-owm-{{ now.weather[0].id }} wi-2x"></i>
@@ -20,7 +24,7 @@
         </div>
         <div class="quotes">
             <h1>"{{ quote.quoteText }}"</h1>
-            <p class="author">-- &nbsp; {{ quote.quoteAuthor }}</p>
+            <p class="author">{{ quote.quoteAuthor }}</p>
         </div>
-    </section>
-</main>
+    </div>
+</section>

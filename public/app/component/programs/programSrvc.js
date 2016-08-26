@@ -1,37 +1,36 @@
 angular.module('streamalong')
     .service('programSrvc', function($http) {
 
-        this.getPrograms = function() {
+        this.getPrograms = () => {
             return $http({
                 method: 'GET',
                 url: '/programs',
-            }).then(function(response) {
-                console.log(response);
+            }).then((response) => {
                 var results = response.data;
                 return results;
             });
         };
 
-        this.addProgram = function(newProgram) {
+        this.addProgram = (newProgram) => {
             return $http({
                 method: 'POST',
                 url: '/programs',
                 data: newProgram
-            }).then(function(response) {
+            }).then((response) => {
                 return response;
             });
         };
 
-        this.deleteProgram = function(id) {
+        this.deleteProgram = (id) => {
             return $http({
                 method: 'DELETE',
                 url: '/program/' + id,
-            }).then(function(response) {
+            }).then((response) => {
                 return response;
             });
         };
 
-        this.getUser = function () {
+        this.getUser =  () => {
             return $http.get('/me');
         };
 

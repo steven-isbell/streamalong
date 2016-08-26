@@ -1,35 +1,47 @@
 angular.module('streamalong')
     .service('clientSrvc', function($http) {
-        this.getUser = function() {
+        this.getUser = () => {
             return $http.get('/me');
         };
 
-        this.getClients = function(id) {
+        this.getClients = (id) => {
                 return $http({
                     method: 'GET',
                     url: '/clients/' + id,
-                }).then(function(response) {
+                }).then((response) => {
                     var results = response.data;
                     return results;
                 });
             };
 
-            this.addClient = function(newClient) {
+            this.addClient = (newClient) => {
                 return $http({
                     method: 'POST',
                     url: '/client',
                     data: newClient
-                }).then(function(response) {
-                    console.log(response);
-                    return response;
+                }).then((response) => {
+                    return response.data;
+                })
+                .catch((err) => {
+                    console.log('Error Adding Client', err);
                 });
             };
 
-            this.deleteClient = function(id) {
+            this.deleteClient = (id) => {
                 return $http({
                     method: 'DELETE',
                     url: '/client/' + id,
-                }).then(function(response) {
+                }).then((response) => {
+                    return response.data;
+                });
+            };
+
+            this.putClient = (updatedClient, name) => {
+                return $http({
+                    method: 'PUT',
+                    url: '/client/' + name,
+                    data: updatedClient
+                }).then((response) => {
                     return response;
                 });
             };

@@ -18,6 +18,18 @@ angular.module('streamalong').config(function ($stateProvider, $urlRouterProvide
         resolve: {
             user: function user(homeSrvc) {
                 return homeSrvc.getUser();
+            },
+            authUser: function authUser($state, homeSrvc) {
+                return homeSrvc.checkAuth().then(function (response) {
+                    if (response === 'unauthorized') {
+                        $state.go('landing page');
+                        setTimeout(function () {
+                            swal("Error", 'Please Login or Sign Up', 'error');
+                        }, 400);
+                    } else {
+                        return response;
+                    }
+                });
             }
         }
     }).state('clients', {
@@ -27,6 +39,18 @@ angular.module('streamalong').config(function ($stateProvider, $urlRouterProvide
         resolve: {
             user: function user(homeSrvc) {
                 return homeSrvc.getUser();
+            },
+            authUser: function authUser($state, homeSrvc) {
+                return homeSrvc.checkAuth().then(function (response) {
+                    if (response === 'unauthorized') {
+                        $state.go('landing page');
+                        setTimeout(function () {
+                            swal("Error", 'Please Login or Sign Up', 'error');
+                        }, 400);
+                    } else {
+                        return response;
+                    }
+                });
             }
         }
     }).state('programs', {
@@ -36,126 +60,44 @@ angular.module('streamalong').config(function ($stateProvider, $urlRouterProvide
         resolve: {
             user: function user(homeSrvc) {
                 return homeSrvc.getUser();
-            }
-        }
-    }).state('distraction', {
-        url: '/distraction',
-        templateUrl: './app/component/distraction/games.html',
-        controller: 'disCtrl',
-        resolve: {
-            user: function user(homeSrvc) {
-                return homeSrvc.getUser();
+            },
+            authUser: function authUser($state, homeSrvc) {
+                return homeSrvc.checkAuth().then(function (response) {
+                    if (response === 'unauthorized') {
+                        $state.go('landing page');
+                        setTimeout(function () {
+                            swal("Error", 'Please Login or Sign Up', 'error');
+                        }, 400);
+                    } else {
+                        return response;
+                    }
+                });
             }
         }
     });
-});
-'use strict';
+    // .state('distraction', {
+    //     url: '/distraction',
+    //     templateUrl: './app/component/distraction/games.html',
+    //     controller: 'disCtrl',
+    //     resolve: {
+    //         user: (homeSrvc) => {
+    //             return homeSrvc.getUser();
+    //         },
+    //         authUser: ($state, homeSrvc) => {
+    //             return homeSrvc.checkAuth().then((response) => {
+    //                 if (response === 'unauthorized') {
+    //                     $state.go('landing page');
+    //                     setTimeout(() => {
+    //                         swal("Error", 'Please Login or Sign Up', 'error');
+    //                     }, 400);
+    //                 } else {
+    //                     return response;
+    //                 }
+    //             });
+    //         }
+    //     }
+    // });
 
-angular.module('streamalong').directive('jqDir', function () {
-    return {
-        restrict: 'EA',
-        link: function link(scope, element, attrs) {
-            $(document).ready(function () {
-                /*
-                typedJS
-                */
-                $(function () {
-                    $('.work').typed({
-                        strings: [" Youth", " Sons", " Daughters", " Families"],
-                        backDelay: 1000,
-                        typeSpeed: 100,
-                        backSpeed: 50,
-                        loop: true
-                    });
-                });
-                /*
-                login and signup modals
-                */
-                $('.close-modal').on('click', function () {
-                    $('.login-modal').hide(300);
-                });
-                $('.close-modal').on('click', function () {
-                    $('.signup-modal').hide(300);
-                });
-                $('.log-in').on('click', function () {
-                    $('.login-modal').show(300);
-                });
-                $('.sign-up').on('click', function () {
-                    $('.signup-modal').show(300);
-                });
-                /*
-                Program View
-                */
-                $('#delete-program').click(function () {
-                    $('.program-container').toggleClass('wiggle');
-                });
-
-                $('#add-program').on('click', function () {
-                    $('.programs-modal').show(300);
-                });
-                $('.close-modal').on('click', function () {
-                    $('.programs-modal').hide(300);
-                });
-
-                /*
-                Program Detail Modal
-                */
-
-                /*
-                Sidebar
-                */
-                $('.sidebar-show').on('click', function () {
-                    $('.sidebar').toggleClass('slideIn');
-                });
-
-                $('.sidebar-show').on('click', function () {
-                    $('.sidebar-show').toggleClass('button-slide');
-                });
-
-                $('#client-toggle').on('click', function () {
-                    setTimeout(function () {
-                        $('#client-drop').slideDown('fast');
-                    }, 300);
-                });
-
-                $('#programs-toggle').on('click', function () {
-                    setTimeout(function () {
-                        $('#programs-drop').slideDown('fast');
-                    }, 300);
-                });
-                $('#info-display').on('click', function () {
-                    $('.info-modal').show(300);
-                });
-                $('.close-modal').on('click', function () {
-                    $('.info-modal').hide(300);
-                });
-
-                /*
-                Client View
-                */
-                $('#add-client').on('click', function () {
-                    $('.client-modal').show(300);
-                });
-                $('.close-modal').on('click', function () {
-                    $('.client-modal').hide(300);
-                });
-                $('#remove-client').on('click', function () {
-                    $('.client-container').toggleClass('wiggle');
-                });
-                $('#remove-client').on('click', function () {
-                    $('#clientDelete').toggle('fast');
-                });
-
-                $('.author').hide();
-                $('.quotes').mouseenter(function () {
-                    $('.author').show(400).mouseleave(function () {
-                        $('.author').hide(400);
-                    });
-                });
-                $('#date').combodate();
-            });
-        }
-    };
 });
 'use strict';
 
@@ -166,37 +108,52 @@ angular.module('streamalong').controller('clientCtrl', function ($scope, user, c
     $scope.getClients = function (id) {
         clientSrvc.getClients(id).then(function (results) {
             $scope.clients = results;
+            if (results.length < 1) {
+                $('.no-clients').removeClass('no-display');
+            } else if (results.length >= 1) {
+                $('.no-clients').addClass('no-display');
+            }
         });
     };
     $scope.getClients($scope.user.id);
 
     $scope.addClient = function (newClient) {
-        clientSrvc.addClient(newClient).then(function (results) {
-            $('.client-modal').hide(300);
-            if (results.status === 200) {
-                swal("Success!", "A New Client Has Been Added!", "success");
-            } else if (results.status === 400) {
+        if (newClient.case_manager_id == $scope.user.id) {
+            clientSrvc.addClient(newClient).then(function (results) {
+                $('.client-modal').hide(300);
+                $scope.newClient = "";
+                if (results === undefined) {
+                    swal("Uh-Oh!", "There Was An Error!", "error");
+                } else {
+                    swal("Success!", "A New Client Has Been Added!", "success");
+                }
+                $scope.getClients($scope.user.id);
+            });
+        } else if (newClient.case_manager_id !== $scope.user.id) {
+            swal("Error", "You Can Only Add Clients To Your Case Management.", "error");
+        }
+    };
+
+    $scope.deleteClient = function (id) {
+        clientSrvc.deleteClient(id).then(function (results) {
+            if (results === undefined) {
                 swal("Uh-Oh!", "There Was An Error!", "error");
+            } else {
+                swal("Success!", "The Client Has Been Removed!", "success");
             }
             $scope.getClients($scope.user.id);
         });
     };
 
-    $scope.deleteClient = function (id) {
-        clientSrvc.deleteClient(id).then(function (results) {
-            $('.makeWiggle').toggleClass('wiggle');
-            $('.remove-client').toggleClass('hidden');
+    $scope.putClient = function (updatedClient, name) {
+        clientSrvc.putClient(updatedClient, name).then(function (results) {
             if (results.status === 200) {
-                swal("Success!", "The Client Has Been Removed!", "success");
+                swal("Success!", "The Client Has Been Updated!", "success");
             } else {
                 swal("Uh-Oh!", "There Was An Error!", "error");
             }
             $scope.getClients($scope.user.id);
         });
-    };
-
-    $scope.readClientId = function (client) {
-        $scope.selectedClient = client;
     };
 });
 'use strict';
@@ -222,8 +179,9 @@ angular.module('streamalong').service('clientSrvc', function ($http) {
             url: '/client',
             data: newClient
         }).then(function (response) {
-            console.log(response);
-            return response;
+            return response.data;
+        }).catch(function (err) {
+            console.log('Error Adding Client', err);
         });
     };
 
@@ -232,21 +190,19 @@ angular.module('streamalong').service('clientSrvc', function ($http) {
             method: 'DELETE',
             url: '/client/' + id
         }).then(function (response) {
+            return response.data;
+        });
+    };
+
+    this.putClient = function (updatedClient, name) {
+        return $http({
+            method: 'PUT',
+            url: '/client/' + name,
+            data: updatedClient
+        }).then(function (response) {
             return response;
         });
     };
-});
-'use strict';
-
-angular.module('streamalong').controller('disCtrl', function (disSrvc, $scope, user) {
-  $scope.user = user.data;
-});
-'use strict';
-
-angular.module('streamalong').service('disSrvc', function ($http) {
-  this.getUser = function () {
-    return $http.get('/me');
-  };
 });
 'use strict';
 
@@ -316,11 +272,21 @@ angular.module('streamalong').service('homeSrvc', function ($q, $http) {
 
     this.getLocation = function () {
         var deferred = $q.defer();
+
         function success(position) {
             deferred.resolve(position);
         }
         navigator.geolocation.getCurrentPosition(success);
         return deferred.promise;
+    };
+
+    this.checkAuth = function () {
+        return $http({
+            method: 'GET',
+            url: '/checkAuth'
+        }).then(function (response) {
+            return response.data;
+        });
     };
 });
 'use strict';
@@ -330,9 +296,9 @@ angular.module('streamalong').controller('landingCtrl', function (landingSrvc, $
     $scope.addManager = function (user) {
         landingSrvc.addManager(user).then(function (response) {
             $('.signup-modal').hide();
-            swal("Successfully Registered!", "Please Login Using The Login Screen!", "success");
-            console.log(response);
-            if (response.data) {
+            if (response === true) {
+                swal("Successfully Registered!", "Please Login Using The Login Screen!", "success");
+            } else {
                 $state.go('landing page');
             }
         });
@@ -369,7 +335,9 @@ angular.module('streamalong').service('landingSrvc', function ($http) {
       data: user
     }).then(function (response) {
       console.log(response);
-      return response;
+      return response.data;
+    }).catch(function (err) {
+      console.log('ERROR SIGNING UP', err);
     });
   };
 
@@ -379,11 +347,9 @@ angular.module('streamalong').service('landingSrvc', function ($http) {
       url: '/auth/local',
       data: user
     }).then(function (response) {
-      // console.log(response.data);
       return response.data;
     }).catch(function (err) {
-      // console.log('ERROR LOGGING IN!', err);
-      // return err;
+      console.log('ERROR LOGGING IN!', err);
     });
   };
 
@@ -401,37 +367,39 @@ angular.module('streamalong').service('landingSrvc', function ($http) {
 'use strict';
 
 angular.module('streamalong').controller('programCtrl', function ($scope, programSrvc, user) {
-  $scope.user = user.data;
+    $scope.user = user.data;
 
-  $scope.getPrograms = function () {
-    programSrvc.getPrograms().then(function (results) {
-      console.log(results);
-      $scope.programs = results;
-    });
-  };
-  $scope.getPrograms();
+    $scope.getPrograms = function () {
+        programSrvc.getPrograms().then(function (results) {
+            $scope.programs = results;
+            if (results.length < 1) {
+                $('.no-clients').removeClass('no-display');
+            } else if (results.length >= 1) {
+                $('.no-clients').addClass('no-display');
+            }
+        });
+    };
+    $scope.getPrograms();
 
-  $scope.addProgram = function (newProgram) {
-    programSrvc.addProgram(newProgram).then(function (results) {
-      $('.programs-modal').hide(300);
-      swal("Success!", "A New Program Has Been Added!", "success");
-      $scope.getPrograms();
-    });
-  };
+    $scope.addProgram = function (newProgram) {
+        programSrvc.addProgram(newProgram).then(function (results) {
+            $('.programs-modal').hide(300);
+            $scope.newProgram = "";
+            swal("Success!", "A New Program Has Been Added!", "success");
+            $scope.getPrograms();
+        });
+    };
 
-  $scope.deleteProgram = function (id) {
-    programSrvc.deleteProgram(id).then(function (results) {
-      console.log(results);
-      $('.makeWiggle').toggleClass('wiggle');
-      $('.remove-program').toggleClass('hidden');
-      swal("Success!", "The Program Has Been Removed!", "success");
-      $scope.getPrograms();
-    });
-  };
+    $scope.deleteProgram = function (id) {
+        programSrvc.deleteProgram(id).then(function (results) {
+            swal("Success!", "The Program Has Been Removed!", "success");
+            $scope.getPrograms();
+        });
+    };
 
-  $scope.readProgramId = function (program) {
-    $scope.selectedProgram = program;
-  };
+    $scope.readProgramId = function (program) {
+        $scope.selectedProgram = program;
+    };
 });
 'use strict';
 
@@ -442,7 +410,6 @@ angular.module('streamalong').service('programSrvc', function ($http) {
             method: 'GET',
             url: '/programs'
         }).then(function (response) {
-            console.log(response);
             var results = response.data;
             return results;
         });
@@ -473,6 +440,19 @@ angular.module('streamalong').service('programSrvc', function ($http) {
 });
 'use strict';
 
+angular.module('streamalong').directive('cmModal', function () {
+    return {
+        restrict: 'EA',
+        templateUrl: './app/directives/CM_update/CM_update.html',
+        scope: false,
+        controller: 'sidebarCtrl',
+        link: function link(scope, elem, attr) {
+            var $scope = scope;
+        }
+    };
+});
+'use strict';
+
 angular.module('streamalong').directive('infoModal', function () {
     return {
         restrict: 'EA',
@@ -481,6 +461,172 @@ angular.module('streamalong').directive('infoModal', function () {
         controller: 'sidebarCtrl',
         link: function link(scope, elem, attr) {
             var $scope = scope;
+        }
+    };
+});
+'use strict';
+
+angular.module('streamalong').directive('jqDir', function () {
+    return {
+        restrict: 'EA',
+        link: function link(scope, element, attrs) {
+            $(document).ready(function () {
+                /*
+                typedJS
+                */
+                $(function () {
+                    $('.work').typed({
+                        strings: [" Youth", " Sons", " Daughters", " Families."],
+                        backDelay: 1000,
+                        typeSpeed: 80,
+                        backSpeed: 50,
+                        loop: true
+                    });
+                });
+                /*
+                landing page
+                */
+                $('.close-modal').on('click', function () {
+                    $("body").css("overflow-y", "auto");
+                    $('.login-modal').hide(300);
+                });
+                $('.close-modal').on('click', function () {
+                    $("body").css("overflow-y", "auto");
+                    $('.signup-modal').hide(300);
+                });
+                $('.log-in').on('click', function () {
+                    $("body").css("overflow-y", "hidden");
+                    $('.login-modal').show(300);
+                });
+                $('.sign-up').on('click', function () {
+                    $("body").css("overflow-y", "hidden");
+                    $('.signup-modal').show(300);
+                });
+                $("#raptor").click(function (e) {
+                    e.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $("#raptor-receiver").offset().top
+                    }, 1200);
+                });
+
+                /*
+                Program View
+                */
+                $('#add-program').on('click', function () {
+                    $("body").css("overflow-y", "hidden");
+                    $('.programs-modal').show(300);
+                });
+                $('.close-modal').on('click', function () {
+                    $("body").css("overflow-y", "auto");
+                    $('.programs-modal').hide(300);
+                });
+
+                /*
+                Sidebar
+                */
+                $('.sidebar-show').click(function () {
+                    var effect = 'slide';
+                    var options = {
+                        direction: 'left'
+                    };
+                    var duration = 500;
+                    $('.sidebar').toggle(effect, options, duration);
+                });
+
+                $('#client-toggle').on('click', function () {
+                    setTimeout(function () {
+                        $('#client-drop').slideDown('fast');
+                    }, 300);
+                });
+
+                $('#programs-toggle').on('click', function () {
+                    setTimeout(function () {
+                        $('#programs-drop').slideDown('fast');
+                    }, 300);
+                });
+                $('#info-display').on('click', function () {
+                    $("body").css("overflow-y", "hidden");
+                    $('.info-modal').show(300);
+                });
+                $('.close-modal').on('click', function () {
+                    $("body").css("overflow-y", "auto");
+                    $('.info-modal').hide(300);
+                });
+                $('#CM-update').on('click', function () {
+                    $("body").css("overflow-y", "hidden");
+                    $('.CM-modal').show(300);
+                });
+                $('.close-modal').on('click', function () {
+                    $("body").css("overflow-y", "auto");
+                    $('.CM-modal').hide(300);
+                });
+
+                /*
+                Client View
+                */
+                $('#add-client').on('click', function () {
+                    $("body").css("overflow-y", "hidden");
+                    $('.client-modal').show(300);
+                });
+                $('.close-modal').on('click', function () {
+                    $("body").css("overflow-y", "auto");
+                    $('.client-modal').hide(300);
+                });
+                /*
+                Home View
+                */
+                $('.author').hide();
+                $('.quotes').mouseenter(function () {
+                    $('.author').show(400).mouseleave(function () {
+                        $('.author').hide(400);
+                    });
+                });
+                $('#date').combodate();
+
+                var bgImages = ['./../../../assets/img/2Q==.jpg', './../../../assets/img/rfasPI6.jpg', './../../../assets/img/b9dX5lg.jpg', './../../../assets/img/gsqQP9V.jpg', './../../../assets/img/QIYCXvx.jpg'];
+                var bg = bgImages[Math.floor(Math.random() * bgImages.length)];
+
+                $('.admin-dash').css('background-image', 'url(' + bg + ')');
+            });
+        }
+    };
+});
+'use strict';
+
+angular.module('streamalong').directive('winScroll', function () {
+    return {
+        restrict: 'EA',
+        link: function link(elem, attrs, scope) {
+            $(document).ready(function () {
+                $(window).scroll(function () {
+
+                    var winScroll = $(this).scrollTop();
+
+                    if (winScroll > $('#inverse-top').offset().top - $(window).height() / 1.5) {
+                        $('#inverse-top').each(function (i) {
+                            setTimeout(function () {
+                                $('#inverse-top').eq(i).addClass('is-showing');
+                            }, 150 * (i + 1));
+                        });
+                    }
+
+                    if (winScroll > $('.middle-container').offset().top - $(window).height() / 1.5) {
+                        $('.middle-container').each(function (i) {
+                            setTimeout(function () {
+                                $('.middle-container').eq(i).addClass('is-showing');
+                            }, 150 * (i + 1));
+                        });
+                    }
+
+                    if (winScroll > $('#inverse-bottom').offset().top - $(window).height() / 1.5) {
+                        $('#inverse-bottom').each(function (i) {
+                            setTimeout(function () {
+                                $('#inverse-bottom').eq(i).addClass('is-showing');
+                            }, 150 * (i + 1));
+                        });
+                    }
+                });
+            });
         }
     };
 });
@@ -501,16 +647,9 @@ angular.module('streamalong').directive('sideDir', function () {
 'use strict';
 
 angular.module('streamalong').controller('sidebarCtrl', function ($scope, sidebarSrvc, $state) {
-  // $scope.getOne = (id) => {
-  //   sidebarSrvc.getCM().then(function (response) {
-  //     console.log(response);
-  //     $scope.user = response;
-  //   });
-  // };
 
   $scope.logout = function () {
     sidebarSrvc.logout().then(function (response) {
-      // console.log(response);
       swal("Success!", "Logout Successful!", "success");
       setTimeout(function () {
         if (response) {
@@ -519,19 +658,22 @@ angular.module('streamalong').controller('sidebarCtrl', function ($scope, sideba
       }, 1500);
     });
   };
+
+  $scope.putManager = function (update, id) {
+    sidebarSrvc.putManager(update, id).then(function (response) {
+      $('.CM-modal').hide(300);
+      console.log(response);
+      if (response.status === 200) {
+        swal("Success!", "Your Information Has Been Saved!", "success");
+      } else {
+        swal("Error!", "Hmm...Something Wasn't Right", "error");
+      }
+    });
+  };
 });
 'use strict';
 
 angular.module('streamalong').service('sidebarSrvc', function ($http) {
-  // this.getCM = function() {
-  //   return $http({
-  //     method: 'GET',
-  //     url: '/manager/:id',
-  //     data: id
-  //   }).then(function(response) {
-  //     return response.data;
-  //   });
-  // };
 
   this.logout = function () {
     return $http({
@@ -540,6 +682,19 @@ angular.module('streamalong').service('sidebarSrvc', function ($http) {
     }).then(function (response) {
       console.log(response);
       return response.data;
+    }).catch(function (err) {
+      console.log(err);
+    });
+  };
+
+  this.putManager = function (update, id) {
+    return $http({
+      method: 'PUT',
+      url: '/manager/' + id,
+      data: update
+    }).then(function (response) {
+      console.log(response);
+      return response;
     }).catch(function (err) {
       console.log(err);
     });

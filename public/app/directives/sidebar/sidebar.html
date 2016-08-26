@@ -15,8 +15,9 @@
         </div>
 
         <div class="dash" id="client-toggle" ui-sref='clients'>
-            <div class="">
+            <div class="client-tab">
                 <p><i class="fa fa-users fa-lg fa-fw" aria-hidden="true"></i>CLIENTS</p>
+                <i class="down-arrow fa fa-arrow-circle-down fa-lg fa-fw"></i>
             </div>
         </div>
 
@@ -24,32 +25,18 @@
             <div class="dash" id="add-client">
                 <p><i class="fa fa-plus-square-o fa-lg fa-fw" aria-hidden="true"></i>ADD CLIENT</p>
             </div>
-            <div class="dash" id="update-client">
-                <p><i class="fa fa-pencil-square-o fa-lg fa-fw" aria-hidden="true"></i>UPDATE CLIENT</p>
-            </div>
-            <div class="dash" id="remove-client">
-                <p><i class="fa fa-trash fa-lg fa-fw" aria-hidden="true"></i>REMOVE CLIENT</p>
-            </div>
         </div>
 
         <div class="dash" id="programs-toggle" ui-sref='programs'>
-            <div class="">
+            <div class="programs-tab">
                 <p><i class="fa fa-first-order fa-lg fa-fw" aria-hidden="true"></i>PROGRAMS</p>
+                <i class="down-arrow fa fa-arrow-circle-down fa-lg fa-fw"></i>
             </div>
         </div>
 
         <div class="dash-dropmenu" id="programs-drop">
             <div class="dash" id="add-program">
                 <p><i class="fa fa-plus-square-o fa-lg fa-fw" aria-hidden="true"></i>ADD PROGRAM</p>
-            </div>
-            <div class="dash" id="delete-program">
-                <p><i class="fa fa-trash fa-lg fa-fw" aria-hidden="true"></i>REMOVE PROGRAM</p>
-            </div>
-        </div>
-
-        <div class="dash" ui-sref='distraction'>
-            <div class="">
-                <p><i class="fa fa-picture-o fa-lg fa-fw" aria-hidden="true"></i>DISTRACTION</p>
             </div>
         </div>
         <div class="dash" id="info-display">
@@ -61,7 +48,7 @@
 
         <section class="tabs-bottom">
             <hr>
-            <div class="dash">
+            <div class="dash" id="CM-update">
                 <div class="">
                     <p><i class="fa fa-pencil-square-o fa-lg fa-fw" aria-hidden="true"></i>UPDATE PROFILE</p>
                 </div>
@@ -69,6 +56,11 @@
             <div class="dash one-click" ng-click="logout()">
                 <div class="">
                     <p><i class="fa fa-sign-out fa-lg fa-fw" aria-hidden="true"></i>LOGOUT</p>
+                </div>
+            </div>
+            <div class="one-click">
+                <div class="">
+                    <p></p>
                 </div>
             </div>
         </section>

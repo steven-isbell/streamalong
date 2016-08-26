@@ -1,43 +1,51 @@
 <side-dir></side-dir>
 <info-modal></info-modal>
-<button type="button" class="sidebar-show">Menu</button>
+<cm-modal></cm-modal>
+<button type="button" class="sidebar-show"><i class="fa fa-bars fa-fw fa-lg" aria-hidden="true"></i>Menu</button>
 <section class="programs-section">
-    <div class="program-wrapper">
-        <div class="program-container" ng-repeat="program in programs track by $index">
-            <img class="program-img" ng-src="{{ program.image }}" alt="img" ng-click="readProgramId(program)" />
-            <br>
-            <h1>{{ program.name }}</h1>
-            <!-- <i class="fa fa-trash fa-fw" id="programDelete" ng-click="deleteProgram(program.id)"></i> -->
+    <header>
+        <img class="logo-internal" src="../../../assets/img/the-journey-logo.png" alt="logo" />
+    </header>
+    <div class="programs-wrapper">
+        <div class="program-container ih-item square effect6 from_top_and_bottom" ng-repeat="program in programs track by $index">
+            <a>
+                <div class="img"><img class="program-img" ng-src="{{ program.image }}" alt="img" /></div>
+                <div class="info">
+                    <h3>{{ program.name }}</h3>
+                    <p>City
+                        <hr class="breaker">{{ program.city }}</p>
+                    <br>
+                    <p>Phone Number
+                        <hr class="breaker">{{ program.phone_number }}</p>
+                    <br>
+                    <p>About
+                        <hr class="breaker">{{ program.description }}</p>
+                    <i class="fa fa-trash fa-fw" id="program-delete" ng-click="deleteProgram(program.id)"></i>
+                </div>
+            </a>
         </div>
-    </div>
-    <div class="program-hover-container">
-        <div class="program-hover">
-            <h1>{{ selectedProgram.name }}</h1>
-            <img ng-src="{{ selectedProgram.image }}" />
-            <p>{{ selectedProgram.city }}</p>
-            <p>{{ selectedProgram.description }}</p>
-            <p>{{ selectedProgram.phone_number }}</p>
-            <!-- <button type="button" name="button" class="delete-program" ng-click="deleteProgram(selectedProgram.id)">REMOVE</button> -->
+        <div class="no-clients no-display">
+            <h1>Begin By Adding a Program From the Menu</h1>
         </div>
-    </div>
-    <div class="programs-modal">
-        <form class="modal-content">
-            <div class="programs-modal-content">
-                <span class="close-modal">&times;</span>
-                <h1><strong>Enter New Program Information</strong></h1>
-                <br>
-                <label>Program Name</label>
-                <input class="programs-input" type="text" name="name" placeholder="Enter Program Name" ng-model="newProgram.name" required>
-                <label>Program City</label>
-                <input class="programs-input" type="text" name="name" placeholder="Enter Program City" ng-model="newProgram.city" required>
-                <label>Program Phone Number</label>
-                <input class="programs-input" type="text" name="name" placeholder="Enter Program Phone Number" ng-model="newProgram.phone_number" required>
-                <label>Program Description</label>
-                <input class="programs-input" type="text" name="name" placeholder="Enter Short Program Description" ng-model="newProgram.description" required>
-                <label>Program Image URL</label>
-                <input class="programs-input" type="text" name="name" placeholder="Enter Program Image URL" ng-model="newProgram.image" required>
-                <button class="program-btn" type="button" name="button" ng-click="addProgram(newProgram)">Submit</button>
-            </div>
-        </form>
+        <div class="programs-modal">
+            <form class="modal-content">
+                <div class="programs-modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h1><strong>Enter New Program Information</strong></h1>
+                    <br>
+                    <label>Program Name</label>
+                    <input class="programs-input" type="text" name="name" placeholder="Enter Program Name" ng-model="newProgram.name" required>
+                    <label>Program City</label>
+                    <input class="programs-input" type="text" name="name" placeholder="Enter Program City" ng-model="newProgram.city" required>
+                    <label>Program Phone Number</label>
+                    <input class="programs-input" type="text" name="name" placeholder="Enter Program Phone Number" ng-model="newProgram.phone_number" required>
+                    <label>Program Description</label>
+                    <input class="programs-input" type="text" name="name" placeholder="Enter Short Program Description" ng-model="newProgram.description" required>
+                    <label>Program Image URL</label>
+                    <input class="programs-input" type="text" name="name" placeholder="Enter Program Image URL" ng-model="newProgram.image" required>
+                    <button class="program-btn" type="button" name="button" ng-click="addProgram(newProgram)">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>

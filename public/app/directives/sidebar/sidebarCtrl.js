@@ -1,15 +1,8 @@
 angular.module('streamalong')
   .controller('sidebarCtrl', ($scope, sidebarSrvc, $state) => {
-    // $scope.getOne = (id) => {
-    //   sidebarSrvc.getCM().then(function (response) {
-    //     console.log(response);
-    //     $scope.user = response;
-    //   });
-    // };
 
-    $scope.logout = function() {
+    $scope.logout = () => {
       sidebarSrvc.logout().then((response) => {
-        // console.log(response);
         swal("Success!", "Logout Successful!", "success");
         setTimeout(() => {
           if (response) { $state.go('landing page'); }
@@ -17,5 +10,17 @@ angular.module('streamalong')
       });
     };
 
+    $scope.putManager = (update, id) => {
+      sidebarSrvc.putManager(update, id).then((response) => {
+        $('.CM-modal').hide(300);
+        console.log(response);
+        if (response.status === 200) {
+        swal("Success!", "Your Information Has Been Saved!", "success");
+      }
+      else {
+        swal("Error!", "Hmm...Something Wasn't Right", "error");
+      }
+      });
+    };
 
   });

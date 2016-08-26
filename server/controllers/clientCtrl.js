@@ -20,15 +20,10 @@ module.exports = {
     addClient: (req, res, next) => {
         db.add_client([req.body.name, req.body.age, req.body.date_of_birth, req.body.case_manager, req.body.case_manager_id, req.body.client_image], (err, resp) => {
             if (err) {
-                return res.status(500).send('Wrong ID Entered!');
+                return res.status(400).json('Wrong ID Entered!');
             } else {
                 res.status(200).json('Client Added!');
             }
-        });
-    },
-    updateClient: (req, res, next) => {
-        db.update_client_information(req.params.id, (err, resp) => {
-            res.status(200).json('Client Information Updated!');
         });
     },
     removeClient: (req, res, next) => {

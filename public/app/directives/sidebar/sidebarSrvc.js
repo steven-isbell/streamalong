@@ -1,24 +1,29 @@
 angular.module('streamalong')
   .service('sidebarSrvc', function($http) {
-    // this.getCM = function() {
-    //   return $http({
-    //     method: 'GET',
-    //     url: '/manager/:id',
-    //     data: id
-    //   }).then(function(response) {
-    //     return response.data;
-    //   });
-    // };
 
-    this.logout = function() {
+    this.logout = () => {
       return $http({
         method: 'GET',
         url: '/logout'
-      }).then(function(response) {
+      }).then((response) => {
         console.log(response);
         return response.data;
       })
-      .catch(function(err) {
+      .catch((err) => {
+        console.log(err);
+      });
+    };
+
+    this.putManager = (update, id) => {
+      return $http({
+        method: 'PUT',
+        url: '/manager/' + id,
+        data: update
+      }).then((response) => {
+        console.log(response);
+        return response;
+      })
+      .catch((err) => {
         console.log(err);
       });
     };

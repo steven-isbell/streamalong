@@ -1,5 +1,5 @@
 angular.module('streamalong')
-  .directive('sideDir', function() {
+  .directive('sideDir', () => {
     return {
       restrict: 'EA',
       templateUrl: './app/directives/sidebar/sidebar.html',

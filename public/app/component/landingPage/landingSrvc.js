@@ -1,28 +1,29 @@
 angular.module('streamalong')
   .service('landingSrvc', function($http) {
-    this.addManager = function(user) {
+    this.addManager = (user) => {
       return $http({
         method: 'POST',
         url: '/signup',
         data: user
-      }).then(function(response) {
+      }).then((response) => {
         console.log(response);
-        return response;
+        return response.data;
+      })
+      .catch((err) => {
+        console.log('ERROR SIGNING UP', err);
       });
     };
 
-    this.login = function(user) {
+    this.login = (user) => {
       return $http({
         method: 'POST',
         url: '/auth/local',
         data: user
-      }).then(function(response) {
-        // console.log(response.data);
+      }).then((response) => {
         return response.data;
       })
       .catch((err) => {
-        // console.log('ERROR LOGGING IN!', err);
-        // return err;
+        console.log('ERROR LOGGING IN!', err);
       });
     };
 

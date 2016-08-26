@@ -11,8 +11,8 @@ angular.module('streamalong')
 
         $scope.clock = clock;
 
-        $scope.getQuote = function() {
-            homeSrvc.getQuote().then(function(results) {
+        $scope.getQuote = () => {
+            homeSrvc.getQuote().then((results) => {
                 $scope.quote = results;
             });
         };
@@ -25,9 +25,9 @@ angular.module('streamalong')
         }
 
 
-        $scope.currWeather = function() {
-            homeSrvc.getLocation().then(function (response) {
-              homeSrvc.getAPIWeather(response).then(function (response) {
+        $scope.currWeather = () => {
+            homeSrvc.getLocation().then((response) => {
+              homeSrvc.getAPIWeather(response).then((response) => {
                   $('.weather').css("visibility", "visible");
                 $scope.now = response.data;
               });
