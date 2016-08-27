@@ -13,7 +13,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config/config');
 const auth = require('./config/auth');
-const connString = "postgres://postgres:buddy111@localhost/journey";
+const connString = config.connString;
 const path = require('path');
 
 const app = module.exports = express();
@@ -23,9 +23,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-var corsOptions = {
-    origin: 'http://localhost:3000'
-};
+// var corsOptions = {
+//     origin: 'http://localhost:3000'
+// };
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + './../public'));
 const databaseObject = massive.connectSync({
