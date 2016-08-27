@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 // var corsOptions = {
 //     origin: 'http://localhost:3000'
 // };
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.static(__dirname + './../public'));
 const databaseObject = massive.connectSync({
     connectionString: connString
