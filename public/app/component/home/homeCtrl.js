@@ -28,6 +28,7 @@ angular.module('streamalong')
         $scope.currWeather = () => {
             homeSrvc.getLocation().then((response) => {
               homeSrvc.getAPIWeather(response).then((response) => {
+                  $('.loading').fadeOut();
                   $('.weather').css("visibility", "visible");
                 $scope.now = response.data;
               });

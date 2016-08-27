@@ -302,6 +302,9 @@ label {
 input {
     font-family: 'Lato';
 }
+.fa-trash {
+    cursor: pointer;
+}
 
 /*SideBar Styling*/
 
@@ -402,12 +405,20 @@ header {
     background-size: cover;
 }
 .home-wrap {
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding-bottom: 2%;
+}
+.loading {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 5%;
+    z-index: 999;
 }
 .weather {
     visibility: hidden;

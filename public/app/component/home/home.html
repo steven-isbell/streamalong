@@ -1,6 +1,7 @@
 <side-dir></side-dir>
 <info-modal></info-modal>
 <cm-modal></cm-modal>
+<img class="loading" src="../../../assets/img/loading.gif" alt="" />
 <button type="button" class="sidebar-show"><i class="fa fa-bars fa-fw fa-lg" aria-hidden="true"></i>Menu</button>
 <section class="admin-dash">
     <header>
@@ -20,11 +21,15 @@
             {{ clock }}
         </div>
         <div class="userGreeting">
-            <h1>Hello, {{ user.name }}.</h1>
+            <h1>Hello, {{ user.name }}</h1>
         </div>
         <div class="quotes">
-            <h1>"{{ quote.quoteText }}"</h1>
-            <p class="author">{{ quote.quoteAuthor }}</p>
+            <div class="craigs-test">
+                <h1>"{{ quote.quoteText }}"</h1>
+            </div>
+            <div class="author">
+                <p>{{ quote.quoteAuthor }}</p>
+            </div>
         </div>
     </div>
 </section>

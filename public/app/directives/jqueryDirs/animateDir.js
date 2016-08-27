@@ -110,9 +110,10 @@ angular.module('streamalong')
                     */
                     $('.author').hide();
                     $('.quotes').mouseenter(() => {
-                        $('.author').show(400).mouseleave(() => {
-                            $('.author').hide(400);
-                        });
+                        $('.author').show(400);
+                    });
+                    $('.quotes').mouseleave(() => {
+                        $('.author').hide(400);
                     });
                     $('#date').combodate();
 
