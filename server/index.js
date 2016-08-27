@@ -18,14 +18,14 @@ const path = require('path');
 
 const app = module.exports = express();
 
-app.use(cookie());
+app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// var corsOptions = {
-//     origin: 'http://localhost:3000'
-// };
+var corsOptions = {
+    origin: 'http://localhost:3000'
+};
 app.use(cors());
 app.use(express.static(__dirname + './../public'));
 const databaseObject = massive.connectSync({
