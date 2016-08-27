@@ -5,7 +5,7 @@ CREATE TABLE case_managers (
   contact_number varchar(15),
   email varchar(100),
   username varchar(20),
-  password varchar(20),
+  password text,
   cm_image text,
   google_id varchar(40)
 );
