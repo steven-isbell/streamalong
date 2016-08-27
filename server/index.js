@@ -13,7 +13,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config/config');
 const auth = require('./config/auth');
-const connString = config.connString;
+const connString = "postgres://postgres:buddy111@localhost/journey";
 const path = require('path');
 
 const app = module.exports = express();
