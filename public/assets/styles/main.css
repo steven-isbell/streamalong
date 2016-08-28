@@ -92,6 +92,7 @@ html, body {
     font-family: 'Lato';
 }
 .body-LP {
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +101,6 @@ html, body {
 }
 .title-LP {
     width: 60vw;
-    margin-top: 20%;
     font-size: 3rem;
     font-family: 'Open Sans';
     font-weight: bold;
