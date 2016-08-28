@@ -4,6 +4,7 @@ const db = app.get('db');
 module.exports = {
 
     getAll: (req, res, next) => {
+        console.log('db.get_all_clients: ', db.get_all_clients);
         db.get_all_clients(req.params.id, (err, resp) => {
             if (err) {
                 res.status(500).json(err);
