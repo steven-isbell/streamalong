@@ -2,12 +2,14 @@ angular.module('streamalong')
     .controller('statsCtrl', ($scope, user) => {
         $scope.user = user.data;
 
+
+
         function tooltipHtml(n, d) {
             return "<h4>" + n + "</h4><table>" +
                 "<tr><td>Case Workers</td><td>" + (d.caseWorkers) + "</td></tr>" +
                 "<tr><td>Youth</td><td>" + (d.youth) + "</td></tr>" +
                 "<tr><td>Youth/Case Worker</td><td>" + (d.avg) + "</td></tr>" +
-                "</table>";
+                "</table>" + "<h5>Per 100,000 people</h5>";
         }
 
         let sampleData = {};
@@ -23,13 +25,23 @@ angular.module('streamalong')
             sampleData[d] = {
                 caseWorkers: d3.min([caseWorkers, youth]),
                 youth: d3.max([caseWorkers, youth]),
-                avg: Math.round((youth/caseWorkers)),
+                avg: Math.round((youth / caseWorkers)),
                 color: d3.interpolate("#ffffcc", "#800026")(youth / 500)
             };
         });
 
-        /* draw states on id #statesvg */
         uStates.draw("#statesvg", sampleData, tooltipHtml);
 
-        d3.select(self.frameElement).style("height", "100px");
+        d3.select(self.frameElement).style("height", "90%")
+            .style("width", "90%");
+
+        d3.select("#statesvg")
+            .append("div")
+            .classed("svg-container", true) //container class to make it responsive
+            .append("svg")
+            //responsive SVG needs these 2 attributes and no width and height attr
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 600 400")
+            //class to make it responsive
+            .classed("svg-content-responsive", true);
     });

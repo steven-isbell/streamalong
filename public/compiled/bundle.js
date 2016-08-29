@@ -438,11 +438,24 @@ angular.module('streamalong').service('programSrvc', function ($http) {
 });
 'use strict';
 
+angular.module('streamalong').directive('cmModal', function () {
+    return {
+        restrict: 'EA',
+        templateUrl: './app/directives/CM_update/CM_update.html',
+        scope: false,
+        controller: 'sidebarCtrl',
+        link: function link(scope, elem, attr) {
+            var $scope = scope;
+        }
+    };
+});
+'use strict';
+
 angular.module('streamalong').controller('statsCtrl', function ($scope, user) {
     $scope.user = user.data;
 
     function tooltipHtml(n, d) {
-        return "<h4>" + n + "</h4><table>" + "<tr><td>Case Workers</td><td>" + d.caseWorkers + "</td></tr>" + "<tr><td>Youth</td><td>" + d.youth + "</td></tr>" + "<tr><td>Youth/Case Worker</td><td>" + d.avg + "</td></tr>" + "</table>";
+        return "<h4>" + n + "</h4><table>" + "<tr><td>Case Workers</td><td>" + d.caseWorkers + "</td></tr>" + "<tr><td>Youth</td><td>" + d.youth + "</td></tr>" + "<tr><td>Youth/Case Worker</td><td>" + d.avg + "</td></tr>" + "</table>" + "<h5>Per 100,000 people</h5>";
     }
 
     var sampleData = {};
@@ -457,23 +470,16 @@ angular.module('streamalong').controller('statsCtrl', function ($scope, user) {
         };
     });
 
-    /* draw states on id #statesvg */
     uStates.draw("#statesvg", sampleData, tooltipHtml);
 
-    d3.select(self.frameElement).style("height", "100px");
-});
-'use strict';
+    d3.select(self.frameElement).style("height", "90%").style("width", "90%");
 
-angular.module('streamalong').directive('cmModal', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/directives/CM_update/CM_update.html',
-        scope: false,
-        controller: 'sidebarCtrl',
-        link: function link(scope, elem, attr) {
-            var $scope = scope;
-        }
-    };
+    d3.select("#statesvg").append("div").classed("svg-container", true) //container class to make it responsive
+    .append("svg")
+    //responsive SVG needs these 2 attributes and no width and height attr
+    .attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", "0 0 600 400")
+    //class to make it responsive
+    .classed("svg-content-responsive", true);
 });
 'use strict';
 
@@ -707,25 +713,30 @@ angular.module('streamalong').directive('winScrollStats', function () {
                     $body = $(document.body),
                     bodyHeight = $body.height();
 
-                $('.hello').css("transform", "translateY(" + winScroll / 2 + "px)");
+                // $('.hello').css("transform", "translateY(" + (winScroll / 2) + "px)");
+                $('.hello').css("transform", "translateX(" + winScroll / 2 + "px)");
 
                 $('.you-are').css("transform", "translateY(" + winScroll / 2 + "px)");
 
                 $('.seuss').css("transform", "translateY(" + winScroll / -1.75 + "px)");
 
+                $('.inspiration').css("transform", "translateX(" + winScroll / -6 + "px)");
+
+                $('.infomercial').css("transform", "translateY(" + winScroll / 2 + "px)");
+
                 $('.infomercial').css({
                     'transform': 'rotate(' + $body.scrollTop() / bodyHeight * 360 + 'deg)'
                 });
 
-                var opacity = 0,
-                    fadeStart = 1500,
-                    fadeEnd = 2000;
-                if (docScroll <= fadeStart) {
-                    opacity = 1;
-                } else if (docScroll <= fadeEnd) {
-                    opacity = 1.5 - docScroll / fadeEnd;
-                }
-                $('.keep-on-wrapper').css('opacity', opacity);
+                // let opacity = 0,
+                //     fadeStart = 1500,
+                //     fadeEnd = 2000;
+                // if (winScroll <= fadeStart) {
+                //     opacity = 1;
+                // } else if (winScroll <= fadeEnd) {
+                //     opacity = 1 - winScroll / fadeEnd;
+                // }
+                // $('.keep-on-wrapper').css('opacity', opacity);
             });
         }
     };

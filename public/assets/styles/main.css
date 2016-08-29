@@ -940,6 +940,7 @@ Info modal
     flex-direction: column;
 }
 .inspiration {
+    position: relative;
     height: 50%;
     width: 50%;
     margin: 5%;
@@ -969,13 +970,29 @@ Info modal
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     background: url('https://hd.unsplash.com/photo-1472329636310-d881a63f180c')center center no-repeat fixed;
     background-size: cover;
 }
 #statesvg {
-    height: 85%;
-    width: 75%;
+    margin: auto;
+    height: 100%;
+    width: 100%;
     background: transparent;
+}
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
 }
 .state {
     fill: none;

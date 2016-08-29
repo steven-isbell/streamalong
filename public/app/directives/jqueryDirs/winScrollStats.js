@@ -9,25 +9,30 @@ angular.module('streamalong')
                         $body = $(document.body),
                         bodyHeight = $body.height();
 
-                    $('.hello').css("transform", "translateY(" + (winScroll / 2) + "px)");
+                    // $('.hello').css("transform", "translateY(" + (winScroll / 2) + "px)");
+                    $('.hello').css("transform", "translateX(" + (winScroll / 2) + "px)");
 
                     $('.you-are').css("transform", "translateY(" + (winScroll / 2) + "px)");
 
                     $('.seuss').css("transform", "translateY(" + (winScroll / -1.75) + "px)");
 
+                    $('.inspiration').css("transform", "translateX(" + (winScroll / -6) + "px)");
+
+                    $('.infomercial').css("transform", "translateY(" + (winScroll / 2) + "px)");
+
                     $('.infomercial').css({
                         'transform': 'rotate(' + ($body.scrollTop() / bodyHeight * 360) + 'deg)'
                     });
 
-                    let opacity = 0,
-                        fadeStart = 1500,
-                        fadeEnd = 2000;
-                    if (docScroll <= fadeStart) {
-                        opacity = 1;
-                    } else if (docScroll <= fadeEnd) {
-                        opacity = 1.5 - docScroll / fadeEnd;
-                    }
-                    $('.keep-on-wrapper').css('opacity', opacity);
+                    // let opacity = 0,
+                    //     fadeStart = 1500,
+                    //     fadeEnd = 2000;
+                    // if (winScroll <= fadeStart) {
+                    //     opacity = 1;
+                    // } else if (winScroll <= fadeEnd) {
+                    //     opacity = 1 - winScroll / fadeEnd;
+                    // }
+                    // $('.keep-on-wrapper').css('opacity', opacity);
 
                 });
 
