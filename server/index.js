@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 var corsOptions = {
-    origin: 'http://localhost:3000'
+    origin: 'http://stevenisbell.io'
 };
 app.use(cors());
 app.use(express.static(__dirname + './../public'));
@@ -83,7 +83,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
-        res.status(200).redirect('/home');
+    res.status(200).redirect('/home');
 });
 
 app.get('/home', cmCtrl.requireAuth, (req, res) => {
@@ -93,7 +93,11 @@ app.get('/home', cmCtrl.requireAuth, (req, res) => {
 app.get('/logout', cmCtrl.logout);
 
 app.get('/me', (req, res, next) => {
-    res.send(req.user);
+    if (req.user) {
+        res.send(req.user);
+    } else {
+        res.status(400).json('Not Logged In!');
+    }
 });
 
 // Port Ready

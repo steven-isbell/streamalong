@@ -7,7 +7,7 @@ angular.module('streamalong')
             .state('landing page', {
                 url: '/',
                 templateUrl: './app/component/landingPage/landingPage.html',
-                controller: 'landingCtrl'
+                controller: 'landingCtrl',
             })
             .state('home', {
                 url: '/home',
@@ -19,13 +19,14 @@ angular.module('streamalong')
                     },
                     authUser: ($state, homeSrvc) => {
                         return homeSrvc.checkAuth().then((response) => {
-                            if (response === 'unauthorized') {
+                            console.log(response);
+                            if (response.data === 'unauthorized') {
                                 $state.go('landing page');
                                 setTimeout(() => {
                                     swal("Error", 'Please Login or Sign Up', 'error');
                                 }, 400);
                             } else {
-                                return response;
+                                return response.data;
                             }
                         });
                     }
@@ -41,7 +42,7 @@ angular.module('streamalong')
                     },
                     authUser: ($state, homeSrvc) => {
                         return homeSrvc.checkAuth().then((response) => {
-                            if (response === 'unauthorized') {
+                            if (response.data === 'unauthorized') {
                                 $state.go('landing page');
                                 setTimeout(() => {
                                     swal("Error", 'Please Login or Sign Up', 'error');
@@ -63,7 +64,29 @@ angular.module('streamalong')
                     },
                     authUser: ($state, homeSrvc) => {
                         return homeSrvc.checkAuth().then((response) => {
-                            if (response === 'unauthorized') {
+                            if (response.data === 'unauthorized') {
+                                $state.go('landing page');
+                                setTimeout(() => {
+                                    swal("Error", 'Please Login or Sign Up', 'error');
+                                }, 400);
+                            } else {
+                                return response;
+                            }
+                        });
+                    }
+                }
+            })
+            .state('stats', {
+                url: '/stats',
+                templateUrl: './app/component/stats/stats.html',
+                controller: 'statsCtrl',
+                resolve: {
+                    user: (homeSrvc) => {
+                        return homeSrvc.getUser();
+                    },
+                    authUser: ($state, homeSrvc) => {
+                        return homeSrvc.checkAuth().then((response) => {
+                            if (response.data === 'unauthorized') {
                                 $state.go('landing page');
                                 setTimeout(() => {
                                     swal("Error", 'Please Login or Sign Up', 'error');
@@ -75,28 +98,6 @@ angular.module('streamalong')
                     }
                 }
             });
-            // .state('distraction', {
-            //     url: '/distraction',
-            //     templateUrl: './app/component/distraction/games.html',
-            //     controller: 'disCtrl',
-            //     resolve: {
-            //         user: (homeSrvc) => {
-            //             return homeSrvc.getUser();
-            //         },
-            //         authUser: ($state, homeSrvc) => {
-            //             return homeSrvc.checkAuth().then((response) => {
-            //                 if (response === 'unauthorized') {
-            //                     $state.go('landing page');
-            //                     setTimeout(() => {
-            //                         swal("Error", 'Please Login or Sign Up', 'error');
-            //                     }, 400);
-            //                 } else {
-            //                     return response;
-            //                 }
-            //             });
-            //         }
-            //     }
-            // });
 
 
 

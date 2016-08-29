@@ -19,6 +19,8 @@ angular.module('streamalong')
                     /*
                     landing page
                     */
+
+                    $('.logged-in').hide();
                     $('.close-modal').on('click', () => {
                         $("body").css("overflow-y", "auto");
                         $('.login-modal').hide(300);
@@ -41,6 +43,31 @@ angular.module('streamalong')
                             scrollTop: $("#raptor-receiver").offset().top
                         }, 1200);
                     });
+
+                    function startMoving(img) {
+                        var img$ = $(img);
+                        var imgWidth = img$.width();
+                        var screenWidth = $(window).width();
+                        var amount = screenWidth - (parseInt(img$.css("left"), 10) || 0);
+                        if (amount <= 0) {
+                            img$.css("left", -imgWidth);
+                            amount = screenWidth + imgWidth;
+                        }
+                        var moveRate = 300;
+                        var time = amount * 1000 / moveRate;
+                        img$.stop(true)
+                            .animate({
+                                left: "+=" + amount
+                            }, time, "linear", function() {
+                                startMoving(this);
+                            });
+                    }
+                    $(window).resize(function() {
+                        $(".nyan").each(function() {
+                            startMoving(this);
+                        });
+                    });
+                    startMoving('.nyan');
 
                     /*
                     Program View
@@ -121,6 +148,20 @@ angular.module('streamalong')
                     let bg = bgImages[Math.floor(Math.random() * bgImages.length)];
 
                     $('.admin-dash').css('background-image', 'url(' + bg + ')');
+                    /* Stats View*/
+                    $("#trex").click((e) => {
+                        e.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: $("#trex-receiver").offset().top
+                        }, 1200);
+                    });
+
+                    $("#triceratops").click((e) => {
+                        e.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: $("#triceratops-receiver").offset().top
+                        }, 1200);
+                    });
 
 
                 });

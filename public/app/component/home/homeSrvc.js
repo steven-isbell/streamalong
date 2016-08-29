@@ -42,7 +42,7 @@ angular.module('streamalong')
                 method: 'GET',
                 url: '/checkAuth'
             }).then((response) => {
-                return response.data;
+                return response;
             });
         };
 

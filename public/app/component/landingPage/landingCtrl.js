@@ -1,5 +1,5 @@
 angular.module('streamalong')
-    .controller('landingCtrl', function(landingSrvc, $scope, $state) {
+    .controller('landingCtrl', function(landingSrvc, $scope, $state, $location) {
 
         $scope.addManager = (user) => {
             landingSrvc.addManager(user).then((response) => {
@@ -12,12 +12,18 @@ angular.module('streamalong')
             });
         };
 
-        function getUser() {
+        $scope.getUser = () => {
             landingSrvc.getUser().then((user) => {
-                if (user) $scope.user = user.username;
-                else $scope.user = 'NOT LOGGED IN';
+                $scope.user = user;
+                if ($scope.user.status === 200) {
+                    $('.is-logged-in').css('display', 'none');
+                    $('.right-float').css('justify-content', 'flex-end');
+                    $('.logged-in').show();
+                }
             });
-        }
+        };
+        $scope.getUser();
+
 
         $scope.login = (username, password) => {
             console.log('Logging in with', username, password);

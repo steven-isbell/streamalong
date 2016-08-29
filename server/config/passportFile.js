@@ -37,9 +37,6 @@ passport.use(new GoogleStrategy({
 }));
 
 passport.use(new LocalStrategy((username, password, done) => {
-    console.log(db);
-    console.log("username: ", username);
-    console.log('function: ',db.get_user_by_username);
     db.get_user_by_username([username], (err, user) => {
         console.log(user, err);
         user = user[0];

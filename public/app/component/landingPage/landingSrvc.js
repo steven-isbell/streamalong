@@ -6,7 +6,6 @@ angular.module('streamalong')
         url: '/signup',
         data: user
       }).then((response) => {
-        console.log(response);
         return response.data;
       })
       .catch((err) => {
@@ -27,17 +26,8 @@ angular.module('streamalong')
       });
     };
 
-    this.getUser = () => {
-      return $http({
-        method: 'GET',
-        url: '/me'
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    };
+    this.getUser =  () => {
+            return $http.get('/me');
+        };
 
   });
