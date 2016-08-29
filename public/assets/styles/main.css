@@ -970,30 +970,28 @@ Info modal
     width: 100%;
     display: flex;
     justify-content: center;
+    overflow: hidden;
     align-items: center;
     background: url('https://hd.unsplash.com/photo-1472329636310-d881a63f180c')center center no-repeat fixed;
     background-size: cover;
 }
 #statesvg {
-    margin: auto;
+    overflow: hidden;
+    background: transparent;
     height: 100%;
     width: 100%;
-    background: transparent;
 }
 .svg-container {
-    display: inline-block;
     position: relative;
-    width: 100%;
-    padding-bottom: 100%; /* aspect ratio */
-    vertical-align: top;
     overflow: hidden;
+    height: 100%;
+    width: 100%;
+    top: 10vh;
+    left: 15vw;
+    right: 15vw;
+    z-index: 1000;
 }
-.svg-content-responsive {
-    display: inline-block;
-    position: absolute;
-    top: 10px;
-    left: 0;
-}
+
 .state {
     fill: none;
     stroke: #a9a9a9;
@@ -1004,6 +1002,7 @@ Info modal
 }
 #tooltip {
     position: absolute;
+    z-index: 1001;
     text-align: center;
     padding: 20px;
     margin: 10px;

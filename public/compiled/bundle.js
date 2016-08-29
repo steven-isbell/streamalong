@@ -438,19 +438,6 @@ angular.module('streamalong').service('programSrvc', function ($http) {
 });
 'use strict';
 
-angular.module('streamalong').directive('cmModal', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/directives/CM_update/CM_update.html',
-        scope: false,
-        controller: 'sidebarCtrl',
-        link: function link(scope, elem, attr) {
-            var $scope = scope;
-        }
-    };
-});
-'use strict';
-
 angular.module('streamalong').controller('statsCtrl', function ($scope, user) {
     $scope.user = user.data;
 
@@ -480,6 +467,19 @@ angular.module('streamalong').controller('statsCtrl', function ($scope, user) {
     .attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", "0 0 600 400")
     //class to make it responsive
     .classed("svg-content-responsive", true);
+});
+'use strict';
+
+angular.module('streamalong').directive('cmModal', function () {
+    return {
+        restrict: 'EA',
+        templateUrl: './app/directives/CM_update/CM_update.html',
+        scope: false,
+        controller: 'sidebarCtrl',
+        link: function link(scope, elem, attr) {
+            var $scope = scope;
+        }
+    };
 });
 'use strict';
 
