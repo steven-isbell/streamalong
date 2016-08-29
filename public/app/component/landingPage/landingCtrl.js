@@ -34,7 +34,7 @@ angular.module('streamalong')
                 if (response === undefined) {
                     swal("Error Logging In!", "Hmm.. Something Wasn't Right. Please Try Again.", "error");
                 } else {
-                    getUser();
+                    $scope.getUser();
                     $state.go('home');
                 }
             });
