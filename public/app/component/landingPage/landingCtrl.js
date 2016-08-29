@@ -15,11 +15,11 @@ angular.module('streamalong')
         $scope.getUser = () => {
             landingSrvc.getUser().then((user) => {
                 $scope.user = user;
-                // if ($scope.user.status === 200) {
-                //     $('.is-logged-in').css('display', 'none');
-                //     $('.right-float').css('justify-content', 'flex-end');
-                //     $('.logged-in').show();
-                // }
+                if ($scope.user.status === 200) {
+                    $('.is-logged-in').css('display', 'none');
+                    $('.right-float').css('justify-content', 'flex-end');
+                    $('.logged-in').show();
+                }
             });
         };
         $scope.getUser();
