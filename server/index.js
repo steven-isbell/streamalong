@@ -21,15 +21,15 @@ const app = module.exports = express();
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 var corsOptions = {
-    origin: 'http://stevenisbell.io'
+  origin: 'http://stevenisbell.io'
 };
 app.use(cors());
 app.use(express.static(__dirname + './../public'));
 const databaseObject = massive.connectSync({
-    connectionString: connString
+  connectionString: connString
 });
 app.set('db', databaseObject);
 const db = app.get('db');
@@ -37,9 +37,9 @@ const db = app.get('db');
 // Session and Passport
 
 app.use(session({
-    secret: config.secret,
-    resave: true,
-    saveUninitialized: true
+  secret: config.secret,
+  resave: true,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -75,32 +75,32 @@ const passportJS = require('./config/passportFile');
 
 //auth endpoints
 app.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
+  scope: ['profile', 'email']
 }));
 app.get('/auth/google/callback', passport.authenticate('google', {
-    successRedirect: '/home',
-    failureRedirect: '/'
+  successRedirect: '/home',
+  failureRedirect: '/'
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
-    res.status(200).redirect('/home');
+  res.status(200).redirect('/home');
 });
 
 app.get('/home', cmCtrl.requireAuth, (req, res) => {
-    res.redirect('/#/home');
+  res.redirect('/#/home');
 });
 
 app.get('/logout', cmCtrl.logout);
 
 app.get('/me', (req, res, next) => {
-    if (req.user) {
-        res.send(req.user);
-    } else {
-        res.status(400).json('Not Logged In!');
-    }
+  if (req.user) {
+    res.send(req.user);
+  } else {
+    res.status(400).json('Not Logged In!');
+  }
 });
 
 // Port Ready
 app.listen(config.port, () => {
-    console.log('Listening on Port: ', config.port);
+  console.log('Listening on Port: ', config.port);
 });
